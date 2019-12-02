@@ -1,12 +1,14 @@
-package com.mailtux
+package com.mailtux.silly
 
+import com.mailtux.util.NanoClock
+import org.junit.Ignore
 import org.junit.Test
 import kotlin.test.assertEquals
 
 class SillyToTest {
 
     companion object {
-        val map=LagLister().lagLister();
+        val map= LagLister().lagLister();
         val indeksertMap = LagIndekserteLister().lagLister();
     }
 
@@ -57,20 +59,43 @@ class SillyToTest {
 
     @Test
     fun test10(){
+        var klokke:NanoClock= NanoClock();
+        klokke.start();
         var l = doit(10)
+        klokke.slutt();
+        println(klokke.sekunder())
         assertEquals(76976,l);
+        assertEquals(538813342,SillyTo.antallTestet.ant)
     }
 
     @Test
     fun test18(){
+        var klokke:NanoClock= NanoClock();
+        klokke.start();
         var l = doit(18)
+        klokke.slutt();
         assertEquals(766736,l);
+    }
+
+    @Test
+    @Ignore
+    fun alle(){
+        var klokke:NanoClock= NanoClock();
+        for (i in 0..map.size-1) {
+            klokke.start();
+            var l = doit(i)
+            klokke.slutt();
+            println(i)
+            println(klokke.sekunder())
+        }
     }
 
     private fun doit(ix:Int): Long {
         val linjer: List<Linje>? = map.get(ix);
 
-        var l = if (linjer != null) SillyTo().lagKvadrater(ix, linjer, indeksertMap) else 0;
+        var l = if (linjer != null) SillyTo().lagKvadrater(ix, linjer,
+            indeksertMap
+        ) else 0;
         return l
     }
 }

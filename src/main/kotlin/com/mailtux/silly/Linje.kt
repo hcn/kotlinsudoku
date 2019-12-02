@@ -1,4 +1,4 @@
-package com.mailtux
+package com.mailtux.silly
 
 data class Linje(var l: Int) {
 

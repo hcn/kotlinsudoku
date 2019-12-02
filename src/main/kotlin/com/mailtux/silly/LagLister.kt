@@ -1,4 +1,4 @@
-package com.mailtux
+package com.mailtux.silly
 
 import java.util.stream.Collectors
 
