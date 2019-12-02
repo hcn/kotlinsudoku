@@ -10,87 +10,67 @@ class SillyToTest {
         val indeksertMap = LagIndekserteLister().lagLister();
     }
 
-//    map=LagLister().lagLister();
-//    private static Map<LagIndekserteLister.ListeIndex, List<Linje>> indeksertMap;
-//
-//    @BeforeClass
-//    public static void before(){
-//        Map<Integer, List<Linje>> map = new LagLister().lagLister();
-//        Map<LagIndekserteLister.ListeIndex, List<Linje>> indeksertMap = new LagIndekserteLister().lagLister();
-//        SillyToTest.map=map;
-//        SillyToTest.indeksertMap=indeksertMap;
-//    }
 
     @Test
     fun test0(){
-        val linjer= map.get(0);
-
-        var l = linjer?.let { SillyTo().lagKvadrater(0, it,indeksertMap) };
+        var l = doit(0)
         assertEquals(1,l);
     }
 
+
+
     @Test
     fun test1(){
-        val linjer = map.get(1);
-
-        var l = linjer?.let { SillyTo().lagKvadrater(1, it,indeksertMap) };
+        var l = doit(1)
         assertEquals(8,l);
     }
-//
-//    @Test
-//    public void test2(){
-//        List<Linje> linjer = map.get(2);
-//
-//        long l = new SillyTo().lagKvadrater(2, linjer,indeksertMap);
-//        assertEquals(48,l);
-//    }
-//
-//    @Test
-//    public void test3(){
-//        List<Linje> linjer = map.get(3);
-//
-//        long l = new SillyTo().lagKvadrater(3, linjer,indeksertMap);
-//        assertEquals(200,l);
-//    }
-//
-//    @Test
-//    public void test4(){
-//        List<Linje> linjer = map.get(4);
-//
-//        long l = new SillyTo().lagKvadrater(4, linjer,indeksertMap);
-//        assertEquals(675,l);
-//    }
-//
-//    @Test
-//    public void test5(){
-//        List<Linje> linjer = map.get(5);
-//
-//        long l = new SillyTo().lagKvadrater(5, linjer,indeksertMap);
-//        assertEquals(1904,l);
-//    }
-//
-//    @Test
-//    public void test6(){
-//        List<Linje> linjer = map.get(6);
-//
-//        long l = new SillyTo().lagKvadrater(6, linjer,indeksertMap);
-//        assertEquals(4376,l);
-//    }
-//
-//    @Test
-//    public void test10(){
-//        List<Linje> linjer = map.get(10);
-//
-//        long l = new SillyTo().lagKvadrater(10, linjer,indeksertMap);
-//        assertEquals(76976,l);
-//    }
-//
-//    @Test
-//    public void test18(){
-//        List<Linje> linjer = map.get(18);
-//
-//        long l = new SillyTo().lagKvadrater(18, linjer,indeksertMap);
-//        assertEquals(766736,l);
-//    }
 
+    @Test
+    fun test2(){
+        var l = doit(2)
+        assertEquals(48,l);
+    }
+
+    @Test
+    fun test3(){
+        var l = doit(3)
+        assertEquals(200,l);
+    }
+
+    @Test
+    fun test4(){
+        var l = doit(4)
+        assertEquals(675,l);
+    }
+
+    @Test
+    fun test5(){
+        var l = doit(5)
+        assertEquals(1904,l);
+    }
+
+    @Test
+    fun test6(){
+        var l = doit(6)
+        assertEquals(4736,l);
+    }
+
+    @Test
+    fun test10(){
+        var l = doit(10)
+        assertEquals(76976,l);
+    }
+
+    @Test
+    fun test18(){
+        var l = doit(18)
+        assertEquals(766736,l);
+    }
+
+    private fun doit(ix:Int): Long {
+        val linjer: List<Linje>? = map.get(ix);
+
+        var l = if (linjer != null) SillyTo().lagKvadrater(ix, linjer, indeksertMap) else 0;
+        return l
+    }
 }
